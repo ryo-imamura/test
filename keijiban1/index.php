@@ -1,12 +1,4 @@
-<?php
-//データベースに接続の可否表示
-try{
-    $db=new PDO('mysql:dbname=keijiban1;host=127.0.0.1;charset=utf8','root','');
-    
-}catch(PDOException $e){
-    echo 'DB接続エラー：'.$e->getMessage();
-}
-?>
+<?php require('dbconnect.php'); ?>
 <!DOCTYPE HTML PUBLIC"-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <head>
