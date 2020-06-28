@@ -1,5 +1,5 @@
-<?php require('model'); ?>
-<?php require('template'); ?>
+<?php require('model.php'); ?>
+<?php require('template.html'); ?>
 
 
 <?php
@@ -9,10 +9,10 @@
             $statement=$db->prepare('INSERT INTO comments SET comment=?, created_at=NOW()');
             $statement->execute(array($_POST['comment']));
         }else{
-            
+
         }
 
-        
+
         if(isset($_REQUEST['page']) && is_numeric($_REQUEST['page'])){
             $page=$_REQUEST['page'];
         }else{
@@ -34,14 +34,14 @@
             <time><?php print($comment['created_at']); ?></time>
             <hr>
         <?php endwhile; ?>
-        
+
         <?php
         ////２ページ目以降なら前のページを表示する（１ページ目は表示しない）
         if($page>=2):
          ?>
         <a href="comment.php?page=<?php print($page-1); ?>">前へ</a >
         <?php endif; ?>
-        
+
         <?php
         //最終ページは表示コメント数／5の繰り上げで表示
         $counts=$db->query('SELECT COUNT(*) AS cnt FROM comments');
@@ -52,4 +52,3 @@
         ?>
         <a href="comment.php?page=<?php print($page+1); ?>">次へ</a>
         <?php endif; ?>
-
