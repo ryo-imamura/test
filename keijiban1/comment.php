@@ -4,10 +4,7 @@
 
 <?php
         if(isset($_POST['comment'])){
-            print('投稿しました');
-            //コメントをデータベースに登録
-            $statement=$db->prepare('INSERT INTO comments SET comment=?, created_at=NOW()');
-            $statement->execute(array($_POST['comment']));
+          inputdb();
         }else{
 
         }
@@ -19,11 +16,7 @@
             $page=1;
         }
         $start=5*($page-1);
-
-        //コメントをデータベースから取り出し
-        $comments=$db->prepare('SELECT * FROM comments ORDER BY id DESC LIMIT ?,5');
-        $comments->bindParam(1,$start,PDO::PARAM_INT);
-        $comments->execute();
+          outputdb();
         ?>
 
         <?php //コメント、時間を繰り返し表示 ?>
